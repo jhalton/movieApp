@@ -1,6 +1,6 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Link, useLocation } from "react-router-dom";
+import { Box, Hidden, Typography } from "@mui/material";
 
 const navLinks = [
   {
@@ -45,7 +45,71 @@ const Sidebar = () => {
           lg: 200,
         },
       }}
-    ></Box>
+    >
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: {
+            xs: "row",
+            lg: "column",
+          },
+          gap: 5,
+          alignItems: {
+            xs: "center",
+            lg: "start",
+          },
+          width: "100%",
+        }}
+      >
+        <Hidden smDown>
+          <Typography
+            variant="h5"
+            component="h1"
+            my={2}
+            fontWeight={400}
+            fontSize={18}
+          >
+            MovieApp
+          </Typography>
+        </Hidden>
+        <Box
+          sx={{
+            py: {
+              xs: "0px",
+              ls: "16px",
+            },
+            display: "flex",
+            flexDirection: {
+              xs: "row",
+              lg: "column",
+            },
+            gap: 4,
+          }}
+        >
+          {navLinks.map((item) => (
+            <Link
+              key={item.name}
+              to={item.link}
+              style={{ textDecoration: "none" }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 2,
+                  color: "white",
+                  textDecoration: "none",
+                }}
+              >
+                <Hidden mdDown>
+                  <Typography>{item.name}</Typography>
+                </Hidden>
+              </Box>
+            </Link>
+          ))}
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
