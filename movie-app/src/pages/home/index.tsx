@@ -8,10 +8,12 @@ import {
   Typography,
 } from "@mui/material";
 import MovieList from "../../components/movie-list";
+import { MovieDataType } from "../../assets/data";
 import MovieTrendList from "../../components/movie-list/movieTrendList";
 
 const Home = () => {
   const [search, setSearch] = useState("");
+  const [searchList, setSearchList] = useState<MovieDataType[]>([]);
   const handleSearch = (e: { target: { value: SetStateAction<string> } }) => {
     setSearch(e.target.value);
   };
