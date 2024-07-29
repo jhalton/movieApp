@@ -7,6 +7,8 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
+import MovieList from "../../components/movie-list";
+import MovieTrendList from "../../components/movie-list/movieTrendList";
 
 const Home = () => {
   const [search, setSearch] = useState("");
