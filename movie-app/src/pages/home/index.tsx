@@ -1,4 +1,4 @@
-import React, { useState, SetStateAction } from "react";
+import React, { useState, SetStateAction, useContext } from "react";
 import Layout from "../../Layout";
 import {
   Box,
@@ -10,13 +10,25 @@ import {
 import MovieList from "../../components/movie-list";
 import { MovieDataType } from "../../assets/data";
 import MovieTrendList from "../../components/movie-list/movieTrendList";
+import { MovieContext } from "../../context/movie-context";
 
 const Home = () => {
   const [search, setSearch] = useState("");
   const [searchList, setSearchList] = useState<MovieDataType[]>([]);
+  const { state } = useContext(MovieContext);
+  const { movies } = state;
+  console.log(state);
+  const trendingList = movies.filter((item) => item.trending === true);
+  const recommendList = movies.filter((item) => item.trending !== true);
+
   const handleSearch = (e: { target: { value: SetStateAction<string> } }) => {
     setSearch(e.target.value);
+    const newList = movies.filter((movie) =>
+      movie.title.toLowerCase().includes(search.toLowerCase())
+    );
+    setSearchList(newList);
   };
+
   return (
     <Layout>
       <Box>
