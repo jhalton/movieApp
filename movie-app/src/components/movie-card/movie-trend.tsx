@@ -9,6 +9,10 @@ interface MovieTrendCardProps {
 
 const MovieTrendCard = ({ movie }: MovieTrendCardProps) => {
   const { dispatch } = useContext(MovieContext);
+
+  const handleToggleBookmark = (id: string) => {
+    dispatch({ type: "TOGGLE BOOKMARK", id });
+  };
   return (
     <Card
       key={movie.id}
@@ -112,7 +116,20 @@ const MovieTrendCard = ({ movie }: MovieTrendCardProps) => {
             justifyContent: "flex-end",
             padding: "16px",
           }}
-        ></Box>
+        >
+          <Box
+            sx={{
+              padding: "1rem",
+              backgroundColor: "black",
+              borderRadius: "100%",
+              cursor: "pointer",
+              "&: hover": { opacity: 0.8 },
+            }}
+            onClick={() => handleToggleBookmark(movie.id)}
+          >
+            {movie.isBookmarked ? "BookmarkIcon" : "EmptyBookmarkIcon"}
+          </Box>
+        </Box>
       </CardContent>
     </Card>
   );
